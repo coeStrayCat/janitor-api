@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: janitor-postgres
+    environment:
+      POSTGRES_USER: janitor
+      POSTGRES_PASSWORD: janitorAPI220645
+      POSTGRES_DB: janitor
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - janitor
+
+  app:
+    build: .
+    container_name: janitor-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/janitor
+      SPRING_DATASOURCE_USERNAME: janitor
+      SPRING_DATASOURCE_PASSWORD: janitorAPI220645
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - janitor
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  janitor:
+    external: true
+    name: janitor
