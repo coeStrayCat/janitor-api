@@ -5,9 +5,9 @@ services:
     image: postgres:15-alpine
     container_name: janitor-postgres
     environment:
-      POSTGRES_USER: janitor
-      POSTGRES_PASSWORD: janitorAPI220645
-      POSTGRES_DB: janitor
+      POSTGRES_USER: '${POSTGRES_USER}'
+      POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
+      POSTGRES_DB: '${POSTGRES_DB}'
     ports:
       - "5432:5432"
     volumes:
@@ -23,9 +23,9 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/janitor
-      SPRING_DATASOURCE_USERNAME: janitor
-      SPRING_DATASOURCE_PASSWORD: janitorAPI220645
+      SPRING_DATASOURCE_URL: '${SPRING_DATASOURCE_URL}'
+      SPRING_DATASOURCE_USERNAME: '${SPRING_DATASOURCE_USERNAME}'
+      SPRING_DATASOURCE_PASSWORD: '${SPRING_DATASOURCE_PASSWORD}'
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     networks:
       - janitor
