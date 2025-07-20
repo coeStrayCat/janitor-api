@@ -1,14 +1,14 @@
-
-FROM eclipse-temurin:21-alpine AS build
+FROM eclipse-temurin:21 AS build
 
 WORKDIR /app
-
 COPY . .
 
+# รัน Gradle พร้อม flag ให้แสดง log แบบละเอียด
 RUN ./gradlew clean build -x test \
-    -Dhttp.socketTimeout=600000 \
-    -Dhttp.connectionTimeout=600000 \
-    --refresh-dependencies
+    --refresh-dependencies \
+    --stacktrace \
+    --info \
+    --no-daemon
 
 FROM openjdk:21-slim
 WORKDIR /app

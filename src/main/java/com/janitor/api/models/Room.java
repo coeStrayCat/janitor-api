@@ -1,6 +1,7 @@
-package com.janitor.api.entity;
+package com.janitor.api.models;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity

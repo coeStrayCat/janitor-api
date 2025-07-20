@@ -24,19 +24,36 @@ repositories {
 }
 
 dependencies {
+    // Spring Boot Starters
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.postgresql:postgresql'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    testImplementation 'org.springframework.security:spring-security-test'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.springframework.boot:spring-boot-docker-compose'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // Database Driver
+    implementation 'org.postgresql:postgresql:42.7.7'
+
+    // Apache Commons
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
+
+    // JSON Web Token (JJWT)
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly   'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly   'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // Lombok (compile only + annotation processor)
+    compileOnly          'org.projectlombok:lombok:1.18.38'
+    annotationProcessor  'org.projectlombok:lombok:1.18.38'
+
+    // Dev tools & Docker Compose support
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Testing
+    testImplementation     'org.springframework.boot:spring-boot-starter-test'
+    testImplementation     'org.springframework.security:spring-security-test'
+    testRuntimeOnly        'org.junit.platform:junit-platform-launcher'
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()
